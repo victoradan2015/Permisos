@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button buttonRequest = findViewById(R.id.button);
 
         switch1 = findViewById(R.id.switch1);
         switch2 = findViewById(R.id.switch2);
@@ -37,18 +36,26 @@ public class MainActivity extends AppCompatActivity {
         switch4 = findViewById(R.id.switch4);
         switch5 = findViewById(R.id.switch5);
 
-        buttonRequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(MainActivity.this,"Ya tienes este permiso!", Toast.LENGTH_LONG).show();
-                }else{
-                    permiso_almacenamiento_externo();
-                }
-            }
-
-        });
-
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+            switch1.setTextColor(0xFF0F3CE7);
+            switch1.setChecked(true);
+        }
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+            switch2.setTextColor(0xFF0F3CE7);
+            switch2.setChecked(true);
+        }
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
+            switch3.setTextColor(0xFF0F3CE7);
+            switch3.setChecked(true);
+        }
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            switch4.setTextColor(0xFF0F3CE7);
+            switch4.setChecked(true);
+        }
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_CONTACTS) == PackageManager.PERMISSION_GRANTED){
+            switch5.setTextColor(0xFF0F3CE7);
+            switch5.setChecked(true);
+        }
 
     }
 
@@ -139,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
         }
+        switch1.setTextColor(0xFF0F3CE7);
     }
 ///////////////METODO PARA LA CAMARA
     private void permiso_camara() {
@@ -157,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},CAMERA_PERMISSION_CODE);
         }
+        switch2.setTextColor(0xFF0F3CE7);
     }
 ///////////////METODO PARA MANDAR LOS SMS
     private void perimiso_enviar_sms() {
@@ -175,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},SEND_SMS_PERMISSION_CODE);
         }
+        switch3.setTextColor(0xFF0F3CE7);
     }
 
     ///////////////METODO PARA ACCEDER A UBICACION
@@ -194,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},ACCESS_FINE_LOCATION_PERMISSION_CODE);
         }
+        switch4.setTextColor(0xFF0F3CE7);
     }
 
 ///////////////METODO PARA LEER CONTACTOS
@@ -213,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_CONTACTS},WRITE_CONTACTS_PERMISSION_CODE);
         }
+        switch5.setTextColor(0xFF0F3CE7);
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
